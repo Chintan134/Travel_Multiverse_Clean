@@ -60,15 +60,25 @@ export default function Home() {
 
         {/* Mascot section (button removed as per UX) */}
         <section className={styles.videoSection}>
-          <div className={styles.videoText}>
-            <h2 className={styles.videoEyebrow}>JUST ADD MAGIC</h2>
-            <h3 className={styles.videoTitle}>Travel Mascot Concierge</h3>
-            <p className={styles.videoDescription}>
-              Your travel mascot brings the multiverse to life with subtle motion,
-              capturing the calm, inspiring feeling of stepping into a dream
-              destination.
-            </p>
-          </div>
+        <div className={styles.videoText}>
+  <h2 className={styles.videoEyebrow}>JUST ADD MAGIC</h2>
+  <h3 className={styles.videoTitle}>Travel Mascot Concierge</h3>
+  <p className={styles.videoDescription}>
+    Your travel mascot brings the multiverse to life with subtle motion,
+    capturing the calm, inspiring feeling of stepping into a dream
+    destination.
+  </p>
+
+  {/* 👇 New attention-grabbing CTA line */}
+  <p className={styles.videoCta}>
+  Meet Sir Alfred Penguin — your personal travel concierge.&nbsp;
+  <span className={styles.videoCtaEmphasis}>
+    Tap the video to get started!
+  </span>
+  <span className={styles.videoCtaIcon}>➜</span>
+</p>
+
+</div>
 
           <div className={styles.videoWrapper}>
             <video
