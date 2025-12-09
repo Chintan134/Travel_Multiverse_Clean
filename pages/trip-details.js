@@ -26,7 +26,8 @@ export default function TripDetails() {
     ((days !== "custom" && days !== "") ||
       (days === "custom" && customDays >= 1 && customDays <= 14));
 
-  const isOptionBValid = prompt.trim().length >= 5;
+  const isOptionBValid = prompt.trim().length > 0;
+
 
   const isContinueEnabled =
     (selectedOption === "A" && isOptionAValid) ||
