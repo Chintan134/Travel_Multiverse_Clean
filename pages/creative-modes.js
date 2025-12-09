@@ -130,18 +130,29 @@ export default function CreativeModes() {
     return "";
   };
 
-  const handleContinue = () => {
-    if (!canContinue) return;
+const handleContinue = () => {
+  if (!canContinue) return;
 
-    router.push({
-      pathname: "/tributaries",
-      query: {
-        mode: selectedMode,
-        flavor: selectedMode === "creative" ? selectedFlavor || "" : "",
-        detail: selectedDetail || "",
-      },
-    });
-  };
+  const { planner, destination, days, companion, budget, prompt } = router.query;
+
+  router.push({
+    pathname: "/tributaries",
+    query: {
+      mode: selectedMode,
+      flavor: selectedMode === "creative" ? selectedFlavor : "",
+      detail: selectedDetail || "",
+
+      // Forward ALL earlier inputs
+      planner: planner || "",
+      destination: destination || "",
+      days: days || "",
+      companion: companion || "",
+      budget: budget || "",
+      prompt: prompt || "",
+    },
+  });
+};
+
 
   let selectedLabel;
   if (selectedMode === "classic") {
