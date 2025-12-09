@@ -1,0 +1,987 @@
+.page {
+  min-height: 100vh;
+  background-color: #f8f5f0;
+  color: #1f2933;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+/* ---------- HEADER (no longer used, safe to keep) ---------- */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 48px;
+  background: rgba(12, 13, 15, 0.96);
+  backdrop-filter: blur(10px);
+  z-index: 20;
+  border-bottom: 1px solid #f8f5f0;
+}
+
+.logoWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 80px;
+  width: auto;
+  object-fit: contain;
+}
+
+.headerTagline {
+  font-size: 1rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: #f9fafb;
+  white-space: nowrap;
+}
+
+/* ---------- HERO (HOME) ---------- */
+
+/* updated: no 100vw, no negative margin, shorter height */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 55vh;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.45),
+    rgba(0, 0, 0, 0.7)
+  );
+}
+
+.heroContent {
+  position: relative;
+  max-width: 760px;
+  text-align: center;
+  color: #ffffff;
+  padding: 40px 16px 0;
+}
+
+.heroTitle {
+  font-family: "Georgia", "Times New Roman", serif;
+  font-size: 3.4rem; /* slightly smaller than original 3.8rem */
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.heroTagline {
+  font-size: 1.28rem; /* slightly reduced from 1.35rem */
+  margin-bottom: 10px;
+  color: #e5e7eb;
+}
+
+/* warmer gold tone */
+.heroSubline {
+  font-size: 1.08rem;
+  line-height: 1.7;
+  color: #dcca8b;
+  margin-bottom: 26px;
+}
+
+.heroButton {
+  display: inline-block;
+  padding: 14px 38px;
+  border-radius: 999px;
+  border: none;
+  background-color: #1f6feb;
+  color: #ffffff;
+  font-size: 1.02rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.4);
+  transition: transform 0.15s ease, box-shadow 0.15s ease,
+    background-color 0.15s ease;
+  text-decoration: none;
+}
+
+.heroButton:hover {
+  background-color: #245fbd;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.55);
+}
+
+.heroNote {
+  margin-top: 12px;
+  font-size: 0.88rem;
+  color: #e5e7eb;
+  opacity: 0.9;
+}
+
+/* ---------- VIDEO SECTION (HOME SCREEN 2) ---------- */
+
+/* updated: reduced margins = smaller hero→video gap */
+.videoSection {
+  max-width: 1280px;
+  margin: 20px auto 56px;
+  padding: 0 32px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.2fr);
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.videoText {
+  color: #374151;
+}
+
+.videoEyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  font-size: 0.8rem;
+  color: #d4a85b;
+  margin-bottom: 6px;
+}
+
+.videoTitle {
+  font-family: "Georgia", "Times New Roman", serif;
+  font-size: 2.1rem;
+  font-weight: 500;
+  margin-bottom: 16px;
+  color: #111827;
+}
+
+.videoDescription {
+  font-size: 1rem;
+  line-height: 1.9;
+  color: #4b5563;
+  margin-bottom: 18px;
+}
+
+.continueButton {
+  display: inline-block;
+  padding: 10px 26px;
+  border-radius: 999px;
+  border: 1px solid #1f2933;
+  background-color: transparent;
+  color: #1f2933;
+  font-size: 0.96rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease,
+    box-shadow 0.15s ease;
+  text-decoration: none;
+}
+
+.continueButton:hover {
+  background-color: #1f2933;
+  color: #f9fafb;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.25);
+}
+
+.videoWrapper {
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.2);
+  overflow: hidden;
+}
+
+/* updated: slightly shorter video */
+.video {
+  display: block;
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+/* ---------- SHARED TRIP LAYOUT (SCREENS 2 & 3) ---------- */
+
+.tripMain {
+  padding-top: 120px;
+  padding-bottom: 72px;
+}
+
+.tripContainer {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.tripTitle {
+  font-family: "Georgia", "Times New Roman", serif;
+  font-size: 2.4rem;
+  margin-bottom: 8px;
+  color: #111827;
+}
+
+.tripSubtitle {
+  font-size: 0.98rem;
+  color: #4b5563;
+  margin-bottom: 24px;
+}
+
+.tripOptionsLayout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.tripCard {
+  position: relative;
+  background: radial-gradient(circle at top left, #ffffff, #f7f2e9);
+  border-radius: 18px;
+  padding: 24px 24px 20px;
+  box-shadow: 0 14px 40px rgba(15, 23, 42, 0.18);
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  cursor: pointer;
+  transition: transform 0.22s ease, box-shadow 0.22s ease,
+    border-color 0.22s ease, opacity 0.22s ease, filter 0.22s ease;
+}
+
+.tripCardActive {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.35);
+  border-color: #1f6feb;
+  opacity: 1;
+  filter: none;
+  z-index: 2;
+}
+
+.tripCardInactive {
+  transform: translateY(4px) scale(0.98);
+  opacity: 0.75;
+  filter: grayscale(0.1);
+  z-index: 1;
+}
+
+.tripCardHeaderRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.tripBadge {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background-color: #1f6feb;
+  color: #f9fafb;
+}
+
+.tripCardTitle {
+  font-family: "Georgia", "Times New Roman", serif;
+  font-size: 1.25rem;
+  margin-bottom: 4px;
+  color: #111827;
+}
+
+.tripCardSubtitle {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin-bottom: 18px;
+}
+
+.tripNote {
+  font-size: 0.86rem;
+  color: #6b7280;
+  margin-top: 8px;
+}
+
+/* Trip details form */
+
+.tripFormGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.tripFieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tripLabel {
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+.tripInput,
+.tripSelect {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  font-size: 0.95rem;
+  background-color: #fdfdfb;
+  outline: none;
+}
+
+.tripInput:focus,
+.tripSelect:focus {
+  border-color: #1f6feb;
+  box-shadow: 0 0 0 1px rgba(31, 111, 235, 0.4);
+}
+
+.tripHint {
+  font-size: 0.78rem;
+  color: #6b7280;
+}
+
+.tripTextarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  font-size: 0.95rem;
+  font-family: inherit;
+  background-color: #fdfdfb;
+  outline: none;
+  margin-bottom: 12px;
+  resize: vertical;
+}
+
+.tripTextarea:focus {
+  border-color: #1f6feb;
+  box-shadow: 0 0 0 1px rgba(31, 111, 235, 0.4);
+}
+
+.tripButtonPrimary,
+.tripButtonSecondary {
+  margin-top: 6px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  font-size: 0.94rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+
+.tripButtonPrimary {
+  background-color: #1f6feb;
+  color: #ffffff;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.25);
+}
+
+.tripButtonPrimary:hover {
+  background-color: #245fbd;
+}
+
+.tripButtonSecondary {
+  background-color: #111827;
+  color: #f9fafb;
+  margin-top: 10px;
+}
+
+.tripButtonSecondary:hover {
+  background-color: #020617;
+}
+
+.tripBackRow {
+  margin-top: 20px;
+}
+
+.tripBackLink {
+  font-size: 0.9rem;
+  color: #1f2933;
+  text-decoration: none;
+}
+
+.tripBackLink:hover {
+  text-decoration: underline;
+}
+
+/* ---------- CREATIVE MODES (SCREEN 3) ---------- */
+
+.creativeFlavorsRow {
+  margin-top: 28px;
+  margin-bottom: 10px;
+}
+
+.creativeFlavorsHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 14px;
+}
+
+.creativeFlavorsTitle {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.creativeFlavorsSubtitle {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+.creativeFlavorsGrid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.creativeFlavorCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  border-radius: 14px;
+  padding: 10px 12px;
+  border: 1px solid #e5e7eb;
+  background-color: #fdfdfb;
+  cursor: pointer;
+  text-align: left;
+  transition: transform 0.18s ease, box-shadow 0.18s ease,
+    border-color 0.18s ease, background-color 0.18s ease;
+}
+
+.creativeFlavorCardActive {
+  border-color: #1f6feb;
+  background: radial-gradient(circle at top left, #ffffff, #e7f0ff);
+  box-shadow: 0 10px 28px rgba(37, 99, 235, 0.35);
+  transform: translateY(-3px);
+}
+
+.creativeFlavorCardInactive {
+  opacity: 0.92;
+}
+
+.creativeFlavorIcon {
+  font-size: 1.4rem;
+  line-height: 1;
+  margin-top: 2px;
+}
+
+.creativeFlavorText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.creativeFlavorTitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.creativeFlavorDescription {
+  font-size: 0.82rem;
+  color: #6b7280;
+}
+
+/* Detail panel */
+
+.flavorDetailPanel {
+  margin-top: 18px;
+  padding: 16px 18px;
+  border-radius: 16px;
+  background-color: #fdfaf4;
+  border: 1px dashed #e5e7eb;
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.08);
+}
+
+.flavorDetailHeader {
+  margin-bottom: 10px;
+}
+
+.flavorDetailTitle {
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.flavorDetailSubtitle {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+/* chips */
+
+.flavorDetailChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.flavorDetailChip {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.86rem;
+  border: 1px solid #d1d5db;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease,
+    border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.flavorDetailChipInactive {
+  color: #374151;
+}
+
+.flavorDetailChipActive {
+  background-color: #1f6feb;
+  color: #f9fafb;
+  border-color: #1f6feb;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+  transform: translateY(-1px);
+}
+
+/* upload */
+
+.flavorDetailUpload {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.flavorDetailFileInput {
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background-color: #ffffff;
+  font-size: 0.9rem;
+}
+
+.flavorDetailHint {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+/* info-only */
+
+.flavorDetailInfo {
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+/* CTA row on creative modes */
+
+.creativeCtaRow {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.creativeSelectedText {
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+.creativeContinueButton {
+  padding: 10px 26px;
+  border-radius: 999px;
+  border: none;
+  background-color: #1f6feb;
+  color: #ffffff;
+  font-size: 0.96rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.25);
+  transition: background-color 0.15s ease, box-shadow 0.15s ease,
+    transform 0.15s ease, opacity 0.15s ease;
+}
+
+.creativeContinueButton:hover:not(:disabled) {
+  background-color: #245fbd;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.35);
+  transform: translateY(-1px);
+}
+
+.creativeContinueButton:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ---------- SUMMARY PAGE (SCREEN 4) ---------- */
+
+.summaryHero {
+  position: relative;
+  margin-top: 8px;
+  margin-bottom: 20px;
+  border-radius: 24px;
+  overflow: hidden;
+  min-height: 240px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: 0 18px 50px rgba(15, 23, 42, 0.55);
+}
+
+.summaryHeroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom right,
+    rgba(15, 23, 42, 0.2),
+    rgba(15, 23, 42, 0.92)
+  );
+}
+
+.summaryHeroContent {
+  position: relative;
+  padding: 26px 28px 24px;
+  color: #f9fafb;
+}
+
+.summaryHeroTagline {
+  font-size: 0.8rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  opacity: 0.9;
+  margin-bottom: 6px;
+}
+
+.summaryHeroTitle {
+  font-family: "Georgia", "Times New Roman", serif;
+  font-size: 2.1rem;
+  margin-bottom: 10px;
+}
+
+.summaryHeroChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.summaryHeroChip {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(243, 244, 246, 0.75);
+  background-color: rgba(15, 23, 42, 0.35);
+}
+
+.summaryHeroQuote {
+  font-size: 1.1rem;
+  font-style: italic;
+  color: #e5e7eb;
+  margin-top: 18px;
+}
+
+/* Full-width special mode strip */
+
+.summaryModeStrip {
+  margin-bottom: 16px;
+  padding: 10px 14px;
+  border-radius: 16px;
+  background: radial-gradient(circle at top left, #fef3c7, #fdfdfb);
+  border: 1px solid #fbbf24;
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.1);
+}
+
+.summaryModeStripLabel {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #92400e;
+  margin-bottom: 2px;
+}
+
+.summaryModeStripText {
+  font-size: 0.9rem;
+  color: #78350f;
+}
+
+/* Itinerary full-width timeline */
+
+.summaryItineraryCard {
+  position: relative;
+  padding-left: 26px;
+}
+
+.summaryItineraryCard::before {
+  content: "";
+  position: absolute;
+  top: 56px;
+  bottom: 18px;
+  left: 16px;
+  width: 2px;
+  background: linear-gradient(to bottom, #1f6feb, transparent);
+}
+
+.summaryCard {
+  background-color: #fdfdfb;
+  border-radius: 18px;
+  padding: 18px 18px 16px;
+  box-shadow: 0 12px 34px rgba(15, 23, 42, 0.18);
+  border: 1px solid #e5e7eb;
+}
+
+.summaryCardTitle {
+  font-size: 1.02rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #111827;
+}
+
+.summaryTimelineTitle {
+  font-size: 1.22rem;
+  font-weight: 650;
+  color: #111827;
+  margin-bottom: 6px;
+}
+
+.summaryIntro {
+  font-size: 0.95rem;
+  color: #4b5563;
+  margin-bottom: 14px;
+}
+
+/* Bubble style timeline nodes */
+
+.itineraryDay {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  padding: 10px 0 10px;
+}
+
+.itineraryDayMarker {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 30%, #f9fafb, #1f6feb);
+  margin-top: 4px;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.18);
+}
+
+.itineraryDayTitle {
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 4px;
+}
+
+.itineraryItemList {
+  list-style: disc;
+  padding-left: 18px;
+  margin: 0;
+}
+
+.itineraryItem {
+  font-size: 0.9rem;
+  color: #4b5563;
+  margin-bottom: 2px;
+}
+
+/* Multiverse tabs */
+
+.multiverseTabs {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px;
+  border-radius: 999px;
+  background-color: #f4f4f5;
+  margin-bottom: 10px;
+}
+
+.multiverseTab {
+  border-radius: 999px;
+  border: none;
+  padding: 6px 12px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  background: transparent;
+  color: #4b5563;
+  transition: background-color 0.15s ease, color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.multiverseTabActive {
+  background-color: #111827;
+  color: #f9fafb;
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.25);
+}
+
+/* Actions */
+
+.summaryActions {
+  margin-top: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.summaryButtonPrimary,
+.summaryButtonSecondary,
+.summaryButtonGhost {
+  border-radius: 999px;
+  padding: 9px 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+/* PRIMARY – darkest blue (Download PDF) */
+.summaryButtonPrimary {
+  background-color: #1d4ed8;
+  color: #ffffff;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.25);
+}
+
+.summaryButtonPrimary:hover {
+  background-color: #1e40af;
+}
+
+/* SECONDARY – mid blue (Regenerate / Edit) */
+.summaryButtonSecondary {
+  background-color: #2563eb;
+  color: #f0f9ff;
+}
+
+.summaryButtonSecondary:hover {
+  background-color: #1d4ed8;
+}
+
+/* TERTIARY – lightest blue (Plan Another Trip) */
+.summaryButtonGhost {
+  background-color: #dbeafe;
+  color: #1e40af;
+  border: 1px solid #bfdbfe;
+}
+
+.summaryButtonGhost:hover {
+  background-color: #bfdbfe;
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 900px) {
+  .header {
+    padding: 0 16px;
+    height: 84px;
+  }
+
+  .logo {
+    height: 64px;
+  }
+
+  /* updated hero on tablet */
+  .hero {
+    height: 58vh;
+  }
+
+  .heroContent {
+    padding-top: 32px;
+  }
+
+  .videoSection {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .video {
+    height: 300px; /* reduced from 320px */
+  }
+
+  .tripOptionsLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .tripFormGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .creativeFlavorsGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .summaryGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .headerTagline {
+    display: none;
+  }
+
+  /* updated hero on small screens */
+  .hero {
+    height: 50vh;
+  }
+
+  .heroTagline,
+  .heroSubline {
+    font-size: 0.95rem;
+  }
+
+  .videoSection {
+    margin: 24px auto 52px;
+    padding: 0 16px;
+  }
+
+  .tripContainer {
+    padding: 0 16px;
+  }
+
+  .creativeFlavorsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .flavorDetailPanel {
+    padding: 14px 12px;
+  }
+
+  .creativeCtaRow {
+    align-items: flex-start;
+  }
+
+  .summaryHeroContent {
+    padding: 24px 18px 22px;
+  }
+
+  .summaryHeroTitle {
+    font-size: 1.8rem;
+  }
+
+  .summaryGrid {
+    gap: 18px;
+  }
+}
+
+/* ---------- PRINT (for Download PDF) ---------- */
+@media print {
+  .header {
+    position: static !important;
+    background: #ffffff !important;
+    color: #111827 !important;
+    box-shadow: none !important;
+    border-bottom: 1px solid #d1d5db;
+  }
+
+  .headerTagline {
+    color: #111827 !important;
+  }
+
+  /* Hide buttons only in the printed/PDF version */
+  .summaryActions {
+    display: none !important;
+  }
+}

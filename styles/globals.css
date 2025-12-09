@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------
+   Global Reset & Base Styles
+------------------------------ */
+
+html, body {
+  @apply bg-cloud text-stone font-body;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevents horizontal scroll across all screens */
+}
+
+/* ------------------------------
+   Standard Page Container
+------------------------------ */
+
+.page-container {
+  @apply max-w-4xl mx-auto px-4;
+  padding-top: 1.25rem;  /* ~20px → consistent across screens */
+  padding-bottom: 2rem;  /* extra bottom spacing */
+}
+
+/* ------------------------------
+   Cards & Button Styles
+------------------------------ */
+
+.section-card {
+  @apply bg-white rounded-2xl shadow-soft p-6 border border-fog/40;
+}
+
+.primary-btn {
+  @apply inline-flex items-center justify-center px-5 py-2.5 rounded-full 
+         bg-ocean text-white font-medium shadow-soft hover:bg-ocean/90 transition;
+}
+
+.secondary-btn {
+  @apply inline-flex items-center justify-center px-5 py-2.5 rounded-full 
+         bg-sage text-white font-medium shadow-soft hover:bg-sage/90 transition;
+}
+
+.accent-btn {
+  @apply inline-flex items-center justify-center px-5 py-2.5 rounded-full 
+         bg-sunset text-white font-medium shadow-soft hover:bg-sunset/90 transition;
+}
+
+.outline-btn {
+  @apply inline-flex items-center justify-center px-5 py-2.5 rounded-full 
+         border border-fog text-stone font-medium hover:bg-beige/60 transition;
+}
+
+/* ------------------------------
+   Layout Override
+   Ensures hero sections & summary hero work full width
+------------------------------ */
+
+main {
+  margin: 0 !important;
+  padding: 0 !important;
+  max-width: none !important;
+  width: 100%;
+  display: block !important;
+}
+
+/* ------------------------------
+   Next.js Root Element
+------------------------------ */
+
+#__next {
+  width: 100%;
+  overflow-x: hidden; /* ultimate guard for rogue components */
+}
+
+/* ------------------------------
+   Utility Fixes for Spacing
+------------------------------ */
+
+/* Removes unintended top whitespace below header across all pages */
+header + main {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* Ensures no component drags layout sideways */
+* {
+  box-sizing: border-box;
+}
