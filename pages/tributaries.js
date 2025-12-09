@@ -195,13 +195,39 @@ export default function TributariesSummary() {
   ]);
 
 
-  const itineraries = useMemo(
+  // Local fallback itineraries (what you had before)
+  const localItineraries = useMemo(
     () =>
       isMultiverse
         ? buildMultiverseItinerary(duration)
         : buildSingleItinerary(duration),
     [isMultiverse, duration]
   );
+
+  // Decide which itineraries to use: AI → fallback
+  const itineraries = useMemo(() => {
+    if (!serverItineraries) {
+      return localItineraries;
+    }
+
+    if (isMultiverse) {
+      return {
+        realistic:
+          serverItineraries.multiverse?.realistic ||
+          localItineraries.realistic,
+        dream:
+          serverItineraries.multiverse?.dream || localItineraries.dream,
+        vibe:
+          serverItineraries.multiverse?.vibe || localItineraries.vibe,
+      };
+    }
+
+    // Single-mode itinerary
+    return serverItineraries.single?.length
+      ? serverItineraries.single
+      : localItineraries;
+  }, [serverItineraries, localItineraries, isMultiverse]);
+
 
   const modeLabel = getModeLabel(mode, flavor);
   const modeDisplay = detail ? `${modeLabel} — ${detail}` : modeLabel;
@@ -323,6 +349,19 @@ export default function TributariesSummary() {
           >
             <h2 className={styles.summaryTimelineTitle}>Your Trip Timeline</h2>
             <p className={styles.summaryIntro}>{overviewSentence}</p>
+
+             {loading && (
+              <p className={styles.summaryIntro}>
+                Summoning a smart AI itinerary for your trip...
+              </p>
+            )}
+
+            {error && (
+              <p className={styles.summaryIntro}>
+                {error}
+              </p>
+            )}
+
 
             {isMultiverse && (
               <div className={styles.multiverseTabs}>
