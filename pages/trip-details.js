@@ -32,15 +32,14 @@ export default function TripDetails() {
     (selectedOption === "A" && isOptionAValid) ||
     (selectedOption === "B" && isOptionBValid);
 
-   const handleContinue = () => {
-    // Determine if user is using structured or freeform planner
-    const isStructured = selected === "structured";
-    const isFreeform = selected === "freeform";
+     const handleContinue = () => {
+    if (selectedOption === "A") {
+      // Structured mode
+      const effectiveDays =
+        days === "custom" ? Number(customDays) : Number(days);
 
-    // VALIDATION — Structured planner
-    if (isStructured) {
-      if (!destination || !days || !companion) {
-        alert("Please fill destination, days, and companion.");
+      if (!destination || !companion || !effectiveDays) {
+        alert("Please fill destination, companion and days.");
         return;
       }
 
@@ -49,19 +48,20 @@ export default function TripDetails() {
         query: {
           planner: "structured",
           destination,
-          days,
           companion,
-          budget,
-          mode: "A", // Screen-2 → Screen-3 indicator
+          days: effectiveDays,
+          prompt,   // optional—carry any extra notes
+          mode: "A",
         },
       });
+
       return;
     }
 
-    // VALIDATION — Freeform planner
-    if (isFreeform) {
-      if (!freeformInput.trim()) {
-        alert("Please write something about your trip.");
+    if (selectedOption === "B") {
+      // Free-form mode
+      if (!prompt.trim()) {
+        alert("Please write a short description of your trip.");
         return;
       }
 
@@ -69,13 +69,15 @@ export default function TripDetails() {
         pathname: "/creative-modes",
         query: {
           planner: "freeform",
-          prompt: freeformInput,
+          prompt,
           mode: "B",
         },
       });
+
       return;
     }
   };
+
 
 
   return (
