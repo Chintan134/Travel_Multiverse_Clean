@@ -15,8 +15,8 @@ const Layout = ({ children }) => {
           <Image
                 src="/logo.png"
                 alt="Travel Multiverse logo"
-                width={150}
-                height={48}
+                width={180}
+                height={68}
                 className="h-12 w-auto object-contain"
                 priority
             />

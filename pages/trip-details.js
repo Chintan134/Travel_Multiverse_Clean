@@ -70,7 +70,7 @@ export default function TripDetails() {
         query: {
           planner: "freeform",
           prompt,
-          mode: "B",
+          mode: "A",
         },
       });
 
@@ -231,7 +231,7 @@ We love nature, culture, and peaceful places.”`}
 
               <button
                 type="button"
-                className={styles.tripButtonSecondary}
+                className={styles.tripButtonPrimary}
                 disabled={!isOptionBValid}
                 onClick={handleContinue}
               >

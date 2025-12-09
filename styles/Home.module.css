@@ -134,7 +134,7 @@
 /* updated: reduced margins = smaller hero→video gap */
 .videoSection {
   max-width: 1280px;
-  margin: 20px auto 56px;
+  margin: 20px auto 36px;
   padding: 0 32px;
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.2fr);

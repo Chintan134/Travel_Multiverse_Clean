@@ -4,7 +4,7 @@ import Link from "next/link";
 import styles from "../styles/Home.module.css";
 
 // Hero slideshow images in /public
-const HERO_IMAGES = ["/hero1.jpg", "/hero2.jpg", "/hero3.jpg", "/hero4.jpg"];
+const HERO_IMAGES = ["/hero1.jpg", "/hero2.jpg", "/hero3.jpg", "/hero4.jpg","/hero5.jpg","/hero6.jpg"];
 
 export default function Home() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -62,7 +62,7 @@ export default function Home() {
         <section className={styles.videoSection}>
           <div className={styles.videoText}>
             <h2 className={styles.videoEyebrow}>JUST ADD MAGIC</h2>
-            <h3 className={styles.videoTitle}>Travel Mascot Animation</h3>
+            <h3 className={styles.videoTitle}>Travel Mascot Concierge</h3>
             <p className={styles.videoDescription}>
               Your travel mascot brings the multiverse to life with subtle motion,
               capturing the calm, inspiring feeling of stepping into a dream

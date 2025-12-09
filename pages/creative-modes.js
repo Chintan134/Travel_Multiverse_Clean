@@ -8,7 +8,7 @@ import styles from "../styles/Home.module.css";
 const creativeFlavors = [
   {
     id: "vibetrip",
-    title: "VibeTrip — Travel by Mood",
+    title: "VibeTrip — Travel by Mood: Pick One",
     description:
       "AI designs your destination tone and activities around how you feel right now.",
     icon: "💫",
@@ -25,7 +25,7 @@ const creativeFlavors = [
   },
   {
     id: "parallel",
-    title: "Parallel Universe Trip — Alternate You",
+    title: "Parallel Universe Trip — Alternate You: Pick One",
     description:
       "Pick an alternate version of yourself and see the world through their eyes.",
     icon: "🌌",
@@ -248,7 +248,7 @@ const handleContinue = () => {
             <div className={styles.creativeFlavorsRow}>
               <div className={styles.creativeFlavorsHeader}>
                 <h3 className={styles.creativeFlavorsTitle}>
-                  Creative Multiverse Flavors
+                  Creative Multiverse Flavors - Choose One
                 </h3>
                 <p className={styles.creativeFlavorsSubtitle}>
                   Pick one innovative mode that feels most exciting right now.
