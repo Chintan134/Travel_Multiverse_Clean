@@ -32,12 +32,51 @@ export default function TripDetails() {
     (selectedOption === "A" && isOptionAValid) ||
     (selectedOption === "B" && isOptionBValid);
 
-  const handleContinue = () => {
-    router.push({
-      pathname: "/creative-modes",
-      query: { mode: selectedOption },
-    });
+   const handleContinue = () => {
+    // Determine if user is using structured or freeform planner
+    const isStructured = selected === "structured";
+    const isFreeform = selected === "freeform";
+
+    // VALIDATION — Structured planner
+    if (isStructured) {
+      if (!destination || !days || !companion) {
+        alert("Please fill destination, days, and companion.");
+        return;
+      }
+
+      router.push({
+        pathname: "/creative-modes",
+        query: {
+          planner: "structured",
+          destination,
+          days,
+          companion,
+          budget,
+          mode: "A", // Screen-2 → Screen-3 indicator
+        },
+      });
+      return;
+    }
+
+    // VALIDATION — Freeform planner
+    if (isFreeform) {
+      if (!freeformInput.trim()) {
+        alert("Please write something about your trip.");
+        return;
+      }
+
+      router.push({
+        pathname: "/creative-modes",
+        query: {
+          planner: "freeform",
+          prompt: freeformInput,
+          mode: "B",
+        },
+      });
+      return;
+    }
   };
+
 
   return (
     <div className={styles.page}>
