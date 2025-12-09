@@ -362,26 +362,30 @@ const handleContinue = () => {
             </div>
           )}
 
-          {/* CTA ROW */}
-          <div className={styles.creativeCtaRow}>
-            <div className={styles.creativeSelectedText}>{selectedLabel}</div>
+       {/* CTA ROW */}
+<div className={styles.creativeCtaRow}>
+  {/* Back link on the left */}
+  <Link href="/trip-details" className={styles.tripBackLink}>
+    ← Back to Trip Details
+  </Link>
 
-            <button
-              type="button"
-              className={styles.creativeContinueButton}
-              disabled={!canContinue}
-              title={disableReason}
-              onClick={handleContinue}
-            >
-              Generate My Trip
-            </button>
-          </div>
+  {/* Right column: selected text ABOVE the button, both right-aligned */}
+  <div className={styles.creativeRightColumn}>
+    <div className={styles.creativeSelectedText}>{selectedLabel}</div>
 
-          <div className={styles.tripBackRow}>
-            <Link href="/trip-details" className={styles.tripBackLink}>
-              ← Back to Trip Details
-            </Link>
-          </div>
+    <button
+      type="button"
+      className={styles.creativeContinueButton}
+      disabled={!canContinue}
+      title={disableReason}
+      onClick={handleContinue}
+    >
+      Generate My Trip
+    </button>
+  </div>
+</div>
+
+
         </section>
       </main>
     </div>

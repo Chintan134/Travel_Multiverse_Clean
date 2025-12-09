@@ -662,6 +662,8 @@
 
 /* CTA row on creative modes */
 
+/* CTA row on creative modes */
+
 .creativeCtaRow {
   margin-top: 24px;
   display: flex;
@@ -675,6 +677,34 @@
   font-size: 0.9rem;
   color: #4b5563;
 }
+
+/* Right column: selected text above button, both right-aligned */
+.creativeRightColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;   /* <-- Increase spacing between text and button */
+}
+
+
+.creativeSelectedText {
+  font-size: 0.9rem;
+  color: #4b5563;
+  text-align: right;      /* make the label itself right-aligned */
+}
+
+@media (max-width: 600px) {
+  .creativeCtaRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .creativeRightColumn {
+    align-items: flex-start; /* stack nicely on small screens */
+  }
+}
+
 
 .creativeContinueButton {
   padding: 10px 26px;
