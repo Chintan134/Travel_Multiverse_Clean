@@ -109,8 +109,6 @@ export default function TributariesSummary() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const [openTimeline, setOpenTimeline] = useState("realistic");
-
   const query = router.query || {};
 
   // Raw values from query (to detect if user actually provided them)
