@@ -20,23 +20,36 @@ export default function TripInput() {
     setSelected(trip.inputMethod || "structured");
   }, [trip.inputMethod]);
 
-  const handleContinue = () => {
-    if (selected === "structured") {
-      updateTripDetails({
-        destination,
-        days,
-        companion,
-        budget,
-        inputMethod: "structured",
+    const handleContinue = () => {
+    if (!isContinueEnabled) return;
+
+    // If user chose Structured Planner (Option A)
+    if (selectedOption === "A") {
+      const effectiveDays = days === "custom" ? customDays : days;
+
+      router.push({
+        pathname: "/creative-modes",
+        query: {
+          planner: "structured",
+          destination,
+          companion,
+          days: effectiveDays || "",
+          // we keep which option they chose, in case you
+          // want to use it later
+          mode: "A",
+        },
       });
     } else {
-      updateTripDetails({
-        freeformInput,
-        inputMethod: "freeform",
+      // User chose Free-Form Smart Prompt (Option B)
+      router.push({
+        pathname: "/creative-modes",
+        query: {
+          planner: "freeform",
+          prompt,
+          mode: "B",
+        },
       });
     }
-
-    router.push("/style");
   };
 
   return (
