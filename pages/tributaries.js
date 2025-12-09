@@ -1,7 +1,7 @@
 // pages/tributaries.js
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import styles from "../styles/Home.module.css";
 
 // Static hero background: vibrant image + soft gradient
@@ -104,6 +104,13 @@ export default function TributariesSummary() {
   const router = useRouter();
   const [openTimeline, setOpenTimeline] = useState("realistic");
 
+  // NEW: AI-related state
+  const [serverItineraries, setServerItineraries] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const [openTimeline, setOpenTimeline] = useState("realistic");
+
   const query = router.query || {};
 
   // Raw values from query (to detect if user actually provided them)
@@ -113,6 +120,9 @@ export default function TributariesSummary() {
   const rawMode = query.mode || "";
   const rawFlavor = query.flavor || "";
   const rawDetail = query.detail || "";
+  const rawPlanner = query.planner || "";
+  const rawPrompt = query.prompt || "";
+
 
   const mode = rawMode || "classic";
   const flavor = rawFlavor || "";
@@ -126,6 +136,64 @@ export default function TributariesSummary() {
   const isMultiverse =
     String(flavor).toLowerCase() === "multiverse" &&
     String(mode).toLowerCase() !== "classic";
+
+    useEffect(() => {
+    if (!router.isReady) return;
+
+    const fetchItineraries = async () => {
+      setLoading(true);
+      setError("");
+
+      try {
+        const res = await fetch("/api/generate-destinations", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            planner: rawPlanner,
+            destination: rawDestination,
+            companion: rawCompanion,
+            days: rawDays,
+            prompt: rawPrompt,
+            mode,
+            flavor,
+            detail,
+          }),
+        });
+
+        if (!res.ok) {
+          throw new Error("API error");
+        }
+
+        const data = await res.json();
+        if (data && data.itineraries) {
+          setServerItineraries(data.itineraries);
+        } else {
+          setServerItineraries(null);
+        }
+      } catch (err) {
+        console.error(err);
+        setError(
+          "We couldn't load the smart AI itinerary right now. Showing a fallback version instead."
+        );
+        setServerItineraries(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchItineraries();
+  }, [
+    router.isReady,
+    rawPlanner,
+    rawDestination,
+    rawCompanion,
+    rawDays,
+    rawPrompt,
+    mode,
+    flavor,
+    detail,
+  ]);
+
 
   const itineraries = useMemo(
     () =>
