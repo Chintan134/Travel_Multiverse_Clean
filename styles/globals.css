@@ -87,3 +87,11 @@ header + main {
 * {
   box-sizing: border-box;
 }
+
+/* ----- PRINT COLOR SUPPORT (for nicer PDFs) ----- */
+@media print {
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
