@@ -111,6 +111,9 @@ export default function TributariesSummary() {
 
   const query = router.query || {};
 
+   const rev = query.rev || "";
+
+
   // Raw values from query (to detect if user actually provided them)
   const rawDestination = query.destination || "";
   const rawDays = query.days || "";
@@ -180,17 +183,19 @@ export default function TributariesSummary() {
     };
 
     fetchItineraries();
-  }, [
-    router.isReady,
-    rawPlanner,
-    rawDestination,
-    rawCompanion,
-    rawDays,
-    rawPrompt,
-    mode,
-    flavor,
-    detail,
-  ]);
+}, [
+  router.isReady,
+  rawPlanner,
+  rawDestination,
+  rawCompanion,
+  rawDays,
+  rawPrompt,
+  mode,
+  flavor,
+  detail,
+  rev,          // 👈 NEW: triggers refetch when Regenerate is clicked
+]);
+
 
 
   // Local fallback itineraries (what you had before)

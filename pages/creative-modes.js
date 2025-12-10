@@ -263,10 +263,13 @@ const handleContinue = () => {
                       key={flavor.id}
                       type="button"
                       className={`${styles.creativeFlavorCard} ${
-                        active
-                          ? styles.creativeFlavorCardActive
-                          : styles.creativeFlavorCardInactive
-                      }`}
+  styles[`creativeFlavorCard_${flavor.id}`] || ""
+} ${
+  active
+    ? styles.creativeFlavorCardActive
+    : styles.creativeFlavorCardInactive
+}`}
+
                       onClick={() => onSelectFlavor(flavor.id)}
                     >
                       <div className={styles.creativeFlavorIcon}>
@@ -289,15 +292,22 @@ const handleContinue = () => {
 
           {/* FLAVOR DETAILS (moods/personas/upload/info) */}
           {selectedMode === "creative" && activeFlavor && (
-            <div className={styles.flavorDetailPanel}>
-              <div className={styles.flavorDetailHeader}>
+           
+ <div className={styles.flavorDetailPanel}>
+              
+<div className={styles.flavorDetailHeader}>
                 <h3 className={styles.flavorDetailTitle}>
                   {activeFlavor.title}
                 </h3>
                 <p className={styles.flavorDetailSubtitle}>
-                  {activeFlavor.prompt}
-                </p>
+  {activeFlavor.type === "info"
+    ? activeFlavor.description
+    : activeFlavor.prompt}
+</p>
+
               </div>
+
+
 
               {activeFlavor.type === "chips" && (
                 <div className={styles.flavorDetailChips}>
@@ -354,11 +364,7 @@ const handleContinue = () => {
                 </div>
               )}
 
-              {activeFlavor.type === "info" && (
-                <p className={styles.flavorDetailInfo}>
-                  {activeFlavor.prompt}
-                </p>
-              )}
+             
             </div>
           )}
 
