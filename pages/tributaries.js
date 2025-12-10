@@ -347,63 +347,82 @@ export default function TributariesSummary() {
           )}
 
           {/* FULL-WIDTH ITINERARY TIMELINE */}
-          <div
+                   <div
             className={`${styles.summaryCard} ${styles.summaryItineraryCard}`}
           >
             <h2 className={styles.summaryTimelineTitle}>Your Trip Timeline</h2>
             <p className={styles.summaryIntro}>{overviewSentence}</p>
 
-             {loading && (
-              <p className={styles.summaryIntro}>
-                Summoning a smart AI itinerary for your trip...
-              </p>
-            )}
-
-            {error && (
-              <p className={styles.summaryIntro}>
-                {error}
-              </p>
-            )}
-
-
-            {isMultiverse && (
-              <div className={styles.multiverseTabs}>
-                {["realistic", "dream", "vibe"].map((key) => (
-                  <button
-                    key={key}
-                    type="button"
-                    className={`${styles.multiverseTab} ${
-                      openTimeline === key ? styles.multiverseTabActive : ""
-                    }`}
-                    onClick={() => setOpenTimeline(key)}
-                  >
-                    {key === "realistic" && "Realistic"}
-                    {key === "dream" && "Dream / Unlimited"}
-                    {key === "vibe" && "Vibe / Cinematic"}
-                  </button>
-                ))}
+            {loading ? (
+              // 🐧 Mascot loader while LLM is working
+              <div className={styles.mascotLoader}>
+                <img
+                  src="/sir-alfred-loading.png"
+                  alt="Sir Alfred Penguin planning your trip"
+                  className={styles.mascotImage}
+                />
+                <h3 className={styles.mascotTitle}>
+                  Sir Alfred is crafting your travel story…
+                </h3>
+                <p className={styles.mascotSubtitle}>
+                  He’s sketching routes, hidden gems, and parallel worlds
+                  tailored to your mood and travel style.
+                </p>
               </div>
-            )}
+            ) : (
+              <>
+                {error && (
+                  <p className={styles.summaryIntro}>{error}</p>
+                )}
 
-            {(isMultiverse
-              ? itineraries[openTimeline] || []
-              : itineraries || []
-            ).map((day) => (
-              <div key={day.title} className={styles.itineraryDay}>
-                <div className={styles.itineraryDayMarker} />
-                <div>
-                  <div className={styles.itineraryDayTitle}>{day.title}</div>
-                  <ul className={styles.itineraryItemList}>
-                    {day.items.map((item, index) => (
-                      <li key={index} className={styles.itineraryItem}>
-                        {item}
-                      </li>
+                {isMultiverse && (
+                  <div className={styles.multiverseTabs}>
+                    {["realistic", "dream", "vibe"].map((key) => (
+                      <button
+                        key={key}
+                        type="button"
+                        className={`${styles.multiverseTab} ${
+                          openTimeline === key
+                            ? styles.multiverseTabActive
+                            : ""
+                        }`}
+                        onClick={() => setOpenTimeline(key)}
+                      >
+                        {key === "realistic" && "Realistic"}
+                        {key === "dream" && "Dream / Unlimited"}
+                        {key === "vibe" && "Vibe / Cinematic"}
+                      </button>
                     ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
+                  </div>
+                )}
+
+                {(isMultiverse
+                  ? itineraries[openTimeline] || []
+                  : itineraries || []
+                ).map((day) => (
+                  <div key={day.title} className={styles.itineraryDay}>
+                    <div className={styles.itineraryDayMarker} />
+                    <div>
+                      <div className={styles.itineraryDayTitle}>
+                        {day.title}
+                      </div>
+                      <ul className={styles.itineraryItemList}>
+                        {day.items.map((item, index) => (
+                          <li
+                            key={index}
+                            className={styles.itineraryItem}
+                          >
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                ))}
+              </>
+            )}
           </div>
+
 
           {/* ACTIONS – unified color family */}
           <div className={styles.summaryActions}>
