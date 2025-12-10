@@ -104,22 +104,33 @@ Generate the itinerary JSON now.
 `.trim();
 
     const response = await client.responses.create({
-      model: "gpt-4.1-mini",
+      model: "gpt-4o-mini",
       input: [
         { role: "system", content: systemInstructions },
         { role: "user", content: userInstructions },
       ],
     });
 
-    const text = response.output[0]?.content?.[0]?.text || "{}";
+    let text = response.output[0]?.content?.[0]?.text || "{}";
+let cleaned = text.trim();
 
-    let data;
-    try {
-      data = JSON.parse(text);
-    } catch (e) {
-      console.error("JSON parse error from model:", text);
-      data = { itineraries: null };
-    }
+// If the model ever wraps JSON in ``` ``` fences, strip everything outside braces
+if (!cleaned.startsWith("{")) {
+  const firstBrace = cleaned.indexOf("{");
+  const lastBrace = cleaned.lastIndexOf("}");
+  if (firstBrace !== -1 && lastBrace !== -1) {
+    cleaned = cleaned.slice(firstBrace, lastBrace + 1);
+  }
+}
+
+let data;
+try {
+  data = JSON.parse(cleaned);
+} catch (e) {
+  console.error("JSON parse error from model:", cleaned, e.message);
+  data = { itineraries: null };
+}
+
 
     return res.status(200).json(data);
   } catch (error) {
