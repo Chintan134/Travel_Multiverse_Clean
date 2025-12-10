@@ -468,9 +468,21 @@
   box-shadow: 0 6px 18px rgba(15, 23, 42, 0.25);
 }
 
-.tripButtonPrimary:hover {
+/* Only hover when NOT disabled */
+.tripButtonPrimary:hover:not(:disabled) {
   background-color: #245fbd;
 }
+
+/* Visually disabled state */
+.tripButtonPrimary:disabled {
+  background-color: #99bffc; /* matching faded blue */
+  color: #ffffff;
+  opacity: 1;               /* keep text crisp */
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+
 
 .tripButtonSecondary {
   background-color: #111827;
@@ -495,6 +507,23 @@
 .tripBackLink:hover {
   text-decoration: underline;
 }
+
+.tripFooterRow {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Back on left, button on right */
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+  .tripFooterRow {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+}
+
 
 /* ---------- CREATIVE MODES (SCREEN 3) ---------- */
 
@@ -939,11 +968,14 @@
 
 /* Actions */
 
+
 .summaryActions {
-  margin-top: 18px;
+  margin-top: 28px;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 16px;
+  justify-content: center;
+  padding-bottom: 24px;  /* prevents touching edge */
 }
 
 .summaryButtonPrimary,

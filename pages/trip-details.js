@@ -33,6 +33,39 @@ export default function TripDetails() {
     (selectedOption === "A" && isOptionAValid) ||
     (selectedOption === "B" && isOptionBValid);
 
+  const getDisableReason = () => {
+    if (selectedOption === "A") {
+      if (!destination.trim() || !companion.trim()) {
+        return "Enter destination and who you're traveling with.";
+      }
+      if (!days) {
+        return "Select how many days you'll stay.";
+      }
+      if (days === "custom") {
+        if (!customDays) {
+          return "Enter custom days between 1 and 14.";
+        }
+        const num = Number(customDays);
+        if (Number.isNaN(num) || num < 1 || num > 14) {
+          return "Custom days must be between 1 and 14.";
+        }
+      }
+      return "";
+    }
+
+    if (selectedOption === "B") {
+      if (!prompt.trim()) {
+        return "Type a short description before continuing.";
+      }
+      return "";
+    }
+
+    return "Choose Option A or B and enter the required details.";
+  };
+
+  const disableReason = isContinueEnabled ? "" : getDisableReason();
+
+
      const handleContinue = () => {
     if (selectedOption === "A") {
       // Structured mode
@@ -189,14 +222,6 @@ export default function TripDetails() {
                 </div>
               </div>
 
-              <button
-                type="button"
-                className={styles.tripButtonPrimary}
-                disabled={!isOptionAValid}
-                onClick={handleContinue}
-              >
-                Continue to Creative Modes
-              </button>
             </div>
 
             {/* OPTION B – FREE-FORM SMART PROMPT */}
@@ -230,22 +255,27 @@ export default function TripDetails() {
 We love nature, culture, and peaceful places.”`}
               />
 
-              <button
-                type="button"
-                className={styles.tripButtonPrimary}
-                disabled={!isOptionBValid}
-                onClick={handleContinue}
-              >
-                Continue to Creative Modes
-              </button>
+              
             </div>
-          </div>
+                    </div>
 
-          <div className={styles.tripBackRow}>
+          {/* Shared footer row: Back on left, Next on right */}
+          <div className={styles.tripFooterRow}>
             <Link href="/" className={styles.tripBackLink}>
               ← Back to Home
             </Link>
+
+            <button
+              type="button"
+              className={styles.tripButtonPrimary}
+              disabled={!isContinueEnabled}
+              title={disableReason}
+              onClick={handleContinue}
+            >
+              Continue to Creative Modes
+            </button>
           </div>
+
         </section>
       </main>
     </div>
