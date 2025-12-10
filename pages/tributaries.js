@@ -264,17 +264,50 @@ export default function TributariesSummary() {
       : "Flexible length";
 
   // For overview text
-  const overviewParts = [];
-  if (rawDestination) overviewParts.push(`to ${destination}`);
-  if (durationNumber > 0 && rawDays) overviewParts.push(`for ${durationLabel}`);
-  if (rawCompanion) overviewParts.push(`with ${companion.toLowerCase()}`);
-  if (rawMode || rawFlavor || rawDetail)
-    overviewParts.push(`in ${modeDisplay} mode`);
 
-  const overviewSentence =
-    overviewParts.length > 0
-      ? `A ${overviewParts.join(" ")}.`
-      : "A personalized journey shaped around your preferences.";
+    // Build premium styled overview sentence
+
+const styledParts = [];
+
+if (rawDestination) styledParts.push(destination);
+if (durationNumber > 0 && rawDays) styledParts.push(durationLabel);
+if (rawCompanion) styledParts.push(companion.toLowerCase());
+if (rawMode || rawFlavor || rawDetail) styledParts.push(modeDisplay);
+
+// Final sentence
+let overviewSentence;
+
+// Case 1: Only freeform text exists (structured fields empty)
+if (styledParts.length === 0 && freeformInput) {
+  overviewSentence = freeformInput.trim() + ".";
+}
+// Case 2: Nothing exists at all
+else if (styledParts.length === 0) {
+  overviewSentence = "Your personalized trip begins now.";
+}
+// Case 3: Destination exists → use premium “escape — …” style
+else if (rawDestination) {
+  const head = `Your ${destination} escape — `;
+  const tailParts = [];
+
+  if (durationNumber > 0 && rawDays) tailParts.push(durationLabel);
+  if (rawCompanion) tailParts.push(companion.toLowerCase());
+  if (rawMode || rawFlavor || rawDetail) tailParts.push(modeDisplay);
+
+  overviewSentence = head + tailParts.join(", ") + ".";
+}
+// Case 4: Destination missing → fallback to stylish neutral version
+else {
+  const head = "Your trip — ";
+  const tailParts = [];
+
+  if (durationNumber > 0 && rawDays) tailParts.push(durationLabel);
+  if (rawCompanion) tailParts.push(companion.toLowerCase());
+  if (rawMode || rawFlavor || rawDetail) tailParts.push(modeDisplay);
+
+  overviewSentence = head + tailParts.join(", ") + ".";
+}
+
 
   // Dynamic chip visibility (only show if user provided that piece)
   const showDestinationChip = !!rawDestination;
@@ -368,7 +401,7 @@ export default function TributariesSummary() {
                   He’s sketching routes, hidden gems, and parallel worlds
                   tailored to your mood and travel style.
                 </p>
-              </div>
+              </div>	
             ) : (
               <>
                 {error && (
