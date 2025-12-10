@@ -267,6 +267,7 @@ export default function TributariesSummary() {
 
     // Build premium styled overview sentence
 
+// Build premium styled overview sentence
 const styledParts = [];
 
 if (rawDestination) styledParts.push(destination);
@@ -277,37 +278,30 @@ if (rawMode || rawFlavor || rawDetail) styledParts.push(modeDisplay);
 // Final sentence
 let overviewSentence;
 
-// Case 1: Only freeform text exists (structured fields empty)
-if (styledParts.length === 0 && freeformInput) {
-  overviewSentence = freeformInput.trim() + ".";
-}
-// Case 2: Nothing exists at all
-else if (styledParts.length === 0) {
+// Case 1: No structured fields at all
+if (styledParts.length === 0) {
   overviewSentence = "Your personalized trip begins now.";
 }
-// Case 3: Destination exists → use premium “escape — …” style
+// Case 2: Destination exists → premium “escape — …” style
 else if (rawDestination) {
-  const head = `Your ${destination} escape — `;
   const tailParts = [];
 
   if (durationNumber > 0 && rawDays) tailParts.push(durationLabel);
   if (rawCompanion) tailParts.push(companion.toLowerCase());
   if (rawMode || rawFlavor || rawDetail) tailParts.push(modeDisplay);
 
-  overviewSentence = head + tailParts.join(", ") + ".";
+  overviewSentence = `Your ${destination} escape — ${tailParts.join(", ")}.`;
 }
-// Case 4: Destination missing → fallback to stylish neutral version
+// Case 3: Destination missing → stylish neutral version
 else {
-  const head = "Your trip — ";
   const tailParts = [];
 
   if (durationNumber > 0 && rawDays) tailParts.push(durationLabel);
   if (rawCompanion) tailParts.push(companion.toLowerCase());
   if (rawMode || rawFlavor || rawDetail) tailParts.push(modeDisplay);
 
-  overviewSentence = head + tailParts.join(", ") + ".";
+  overviewSentence = `Your trip — ${tailParts.join(", ")}.`;
 }
-
 
   // Dynamic chip visibility (only show if user provided that piece)
   const showDestinationChip = !!rawDestination;
